@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RepositoryRestResource
 public interface ComiteRepository extends JpaRepository<Comite,Long> {
 
-       @Query("select c from Comite c where c.id=:x")
-       public Comite findbyidcomite( Long x );
+
 
 
 }

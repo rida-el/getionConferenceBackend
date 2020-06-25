@@ -16,8 +16,11 @@ public class Localisation implements Serializable {
     private String adresse;
     private String ville;
     private String pays;
-    private Double longitude,latidude,altitude ;
+    private Double longitude;
+    private Double latitude;
     @ManyToOne
     private Conference conference;
+
+
 
 }

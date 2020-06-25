@@ -27,10 +27,8 @@ public class ProjetFeApplication implements CommandLineRunner {
 	private RepositoryRestConfiguration restConfiguration;
 	@Autowired
 	private OrganisateurRepository organisateurRepository;
-
 	@Autowired
 	private LocalisationRepository localisationRepository;
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetFeApplication.class, args);
@@ -38,26 +36,8 @@ public class ProjetFeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	restConfiguration.exposeIdsFor(Comite.class, Membre.class,Conference.class);
+	restConfiguration.exposeIdsFor(Comite.class, Membre.class,Conference.class,Localisation.class);
 
-        Organisateur o = new Organisateur();
-        o.setNom("rida");
-        o.setPrenom("el ");
-         //organisateurRepository.save(o);
-
-
-		//conferenceRepository.save(new Conference(null,"confer",null,null,null,null,null,null));
-		//conferenceRepository.save(new Conference(null,"confer1",null,null,null,null,null,null));
-		//conferenceRepository.save(new Conference(null,"confer2",null,null,null,null,null,null));
-		Random rnd =new Random();
-		conferenceRepository.findAll().forEach(c->{
-			Localisation l=new Localisation();
-			l.setAdresse(RandomString.make(8));
-			l.setAltitude(rnd.nextDouble());
-			l.setConference(c);
-			//localisationRepository.save(l);
-
-		});
 
 		System.out.println("ruun");
 

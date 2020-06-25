@@ -13,13 +13,15 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RepositoryRestResource
+
 public interface ConferenceRepository extends JpaRepository<Conference,Long> {
 
-    @Query("select c from Conference c where c.id=:x")
-    public Conference findbyidconference( Long x );
+
 
     @RestResource(path = "/selectedConference")
     public List<Conference> findByacceptationIsTrue();
 
+    @RestResource(path = "/getTitre")
+    public Conference findByTitre(String titre);
 
 }

@@ -21,6 +21,4 @@ public class Comite implements Serializable {
     @ManyToOne
     private Conference conference;
 
-
-
 }

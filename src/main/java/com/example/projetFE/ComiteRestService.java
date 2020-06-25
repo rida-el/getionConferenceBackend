@@ -24,8 +24,8 @@ public class ComiteRestService {
 
         Comite m = new ObjectMapper().readValue(comite,Comite.class);
         Long conferenceid = new ObjectMapper().readValue(conference_id,Long.class);
-        Conference c = conferenceRepository.findbyidconference(conferenceid);
-        m.setConference(c);
+        //Conference c = conferenceRepository.findbyidconference(conferenceid);
+       // m.setConference(c);
         System.out.println("comite added");
 
 

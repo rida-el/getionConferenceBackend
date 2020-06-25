@@ -3,6 +3,8 @@ package com.example.projetFE.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,7 +30,7 @@ public class Conference implements Serializable {
     private Date date_debut;
     @Temporal(TemporalType.DATE)
     private Date date_fin;
-    @OneToMany(mappedBy = "conference" ,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "conference",fetch = FetchType.LAZY)
     private Collection <Localisation> localisations;
     @OneToMany(mappedBy = "conference",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Collection <Comite> comites;
@@ -37,6 +39,5 @@ public class Conference implements Serializable {
 
 
 
-    public Conference(Object o, String rida, String el, String maza, String image, Date parse, Date parse1, Object o1) {
-    }
+
 }
