@@ -3,8 +3,10 @@ package com.example.projetFE;
 
 import com.example.projetFE.dao.ConferenceRepository;
 import com.example.projetFE.dao.LocalisationRepository;
+import com.example.projetFE.dao.PlanningRepository;
 import com.example.projetFE.entities.Conference;
 import com.example.projetFE.entities.Localisation;
+import com.example.projetFE.entities.Planning;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,6 +26,8 @@ public class ConferenceRestService {
     @Autowired
     private LocalisationRepository localisationRepository;
 
+    @Autowired
+    private PlanningRepository planningRepository;
 
     @GetMapping(path="/conference/photoConference/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getPhoto(@PathVariable("id") Long id) throws Exception {
@@ -35,17 +39,19 @@ public class ConferenceRestService {
     @PostMapping(path = "/conference/photoConference")
     public void addConference(@RequestParam("file") MultipartFile file,
                               @RequestParam("conference") String conference,
-                              @RequestParam("localisation") String localisation ) throws Exception {
+                              @RequestParam("localisation") String localisation,
+                              @RequestParam("planning") String planning  ) throws Exception {
 
         Conference m = new ObjectMapper().readValue(conference, Conference.class);
         m.setImage(file.getOriginalFilename());
         Localisation l = new ObjectMapper().readValue(localisation, Localisation.class);
-        System.out.println("donne");
+        Planning p = new ObjectMapper().readValue(planning,Planning.class);
         Files.write(Paths.get(System.getProperty("user.home")+"/conference/image/"+m.getImage()), file.getBytes());
         conferenceRepository.save(m);
         l.setConference(m);
         localisationRepository.save(l);
-
+        p.setConference(m);
+        planningRepository.save(p);
     }
 
     @PatchMapping(path = "/conferences/editeConf/{id}")

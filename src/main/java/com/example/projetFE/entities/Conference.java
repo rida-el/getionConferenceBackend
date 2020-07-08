@@ -37,7 +37,8 @@ public class Conference implements Serializable {
     @OneToMany(mappedBy = "conference",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Collection<Planning> plannings;
 
-
+    @OneToMany(mappedBy = "conference",fetch = FetchType.LAZY)
+    private Collection <Participant> participants;
 
 
 }
